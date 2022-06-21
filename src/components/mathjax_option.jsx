@@ -28,13 +28,15 @@ class MathJaxOption extends Component {
       "Trigonometric functions",
     ];
 
+    
     this.mathJaxSymbols = MathJaxSymbols;
+    // console.log({symbols: this.mathJaxSymbols})
 
     this.expanded = {};
     this.mathJaxOptions.forEach((option) => (this.expanded[option] = false));
 
     this.state = {
-      expanded: null,
+      expanded: this.expanded,
       load: false,
     };
 
@@ -85,23 +87,33 @@ class MathJaxOption extends Component {
   onExpandEvent = (_event, option) => {
     const { expanded } = this.state;
 
-    this.signalExpanded = {
-      ...this.expanded,
-      [option]: expanded ? !expanded[option] : true,
-    };
+    // this.expanded = {
+    //   ...this.expanded,
+    //   [option]: expanded ? !expanded[option] : true,
+    // };
+
+    this.setState({
+      ...this.state,
+      expanded: {
+        ...this.expanded,
+        [option]: !expanded[option],
+      }
+    })
+
+    console.log({expanded: this.expanded});
 
     this.clickedOption = option;
   };
 
   expandCollapse = () => {
-    this.setState({
-      expanded: this.signalExpanded,
-    });
+    // this.setState({
+    //   expanded: this.signalExpanded,
+    // });
 
-    this.signalExpanded = {
-      ...this.signalExpanded,
-      [this.clickedOption]: false,
-    };
+    // this.signalExpanded = {
+    //   ...this.signalExpanded,
+    //   [this.clickedOption]: false,
+    // };
   };
 
   stopPropagation = (event) => {
@@ -123,7 +135,7 @@ class MathJaxOption extends Component {
             <>
               <hr />
               <div className="mathjax-toolbar-heading">
-                <b>MathJax:</b>
+                <b>MathJax:</b>\
                 <div>
                   <div
                     className="rdw-option-wrapper"
@@ -140,6 +152,8 @@ class MathJaxOption extends Component {
                 </div>
               </div>
               <div className="mathjax-option-container">
+                {/* {console.log({options: this.mathJaxOptions})}
+                {console.log({symbols: this.mathJaxSymbols})} */}
                 {this.mathJaxOptions.map((option, index) => (
                   <div
                     key={option}
@@ -153,12 +167,17 @@ class MathJaxOption extends Component {
                       }`}
                     />
                     {/* Have to keep it in DOM instead of conditional render, otherwise will have to load symbols on expand, which takes time */}
+                    {/* {console.log({cssString: `rdw-dropdown-optionwrapper${
+                        expanded && expanded[option] ? "" : " d-none"
+                      }`})} */}
+                      {console.log({option, expanded: expanded && expanded[option]})}
                     <div
                       className={`rdw-dropdown-optionwrapper${
                         expanded && expanded[option] ? "" : " d-none"
                       }`}
                       onClick={this.stopPropagation}
                     >
+                      {/* {console.log({nestedOptions: this.mathJaxSymbols[index], index})} */}
                       {this.mathJaxSymbols[index].map(({ label, syntax }) => (
                         <div
                           key={label}

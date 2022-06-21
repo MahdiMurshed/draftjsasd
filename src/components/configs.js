@@ -3,7 +3,7 @@ export const content = {
   blocks: [
     {
       key: "637gr",
-      text: "Initialized from content state.",
+      text: " $ < \Re $ ",
       type: "unstyled",
       depth: 0,
       inlineStyleRanges: [],

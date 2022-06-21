@@ -16,12 +16,6 @@ const Rich = () => {
 
   return (
     <>
-      <Head>
-        <script
-          type="text/javascript"
-          src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"
-        ></script>
-      </Head>
       <RichTextComps richState={richState} onRichTextEdit={onRichTextEdit} />
       <div className="preview-container">
         <h2>Preview</h2>
