@@ -3,7 +3,7 @@ export const content = {
   blocks: [
     {
       key: "637gr",
-      text: " $ < \Re $ ",
+      text: "$hbar$",
       type: "unstyled",
       depth: 0,
       inlineStyleRanges: [],

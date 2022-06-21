@@ -31,7 +31,7 @@ const useRichText = (question = null, answer = null, explanation = null) => {
     },
   ]);
   const [json, setJSON] = useState(() =>
-    richState.map((s) => JSON.stringify(s.value))
+    richState.map((s) => ({ type: s.type, value: JSON.stringify(s.value) }))
   );
 
   const onRichTextEdit = useCallback((type, value) => {
@@ -43,10 +43,22 @@ const useRichText = (question = null, answer = null, explanation = null) => {
         return item;
       })
     );
-    setJSON(richState.map((s) => JSON.stringify(s.value)));
+    setJSON((oldState) =>
+      oldState.map((item, index) => {
+        if (item.type === type) {
+          return { ...item, value: JSON.stringify(value) };
+        }
+        return item;
+      })
+    );
   }, []);
   const resetRichTextValues = useCallback(() => {
     setRichState((oldState) =>
+      oldState.map((item, index) => {
+        return { ...item, value: null };
+      })
+    );
+    setJSON((oldState) =>
       oldState.map((item, index) => {
         return { ...item, value: null };
       })
