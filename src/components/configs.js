@@ -1,17 +1,5 @@
-export const content = {
-  entityMap: {},
-  blocks: [
-    {
-      key: "637gr",
-      text: " $ < \Re $ ",
-      type: "unstyled",
-      depth: 0,
-      inlineStyleRanges: [],
-      entityRanges: [],
-      data: {},
-    },
-  ],
-};
+export const content = {"entityMap":{},"blocks":[{"key":"637gr","text":"Initialized from content state. as $\nleq$","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]};
+
 
 export const MathJaxSymbols = [
   [
